@@ -57,12 +57,20 @@ $( document ).ready(()=>{
 
 	        goblin.animations.play('right');
 	    }
+
+	    else if (cursors.up.isDown)
+	    {
+	        //  Move to the right
+	        goblin.body.velocity.y = -100;
+
+	        goblin.animations.play('right');
+	    }
 	    else
 	    {
 	        //  Stand still
 	        goblin.animations.stop();
 
-	        goblin.frame = 5;
+	        goblin.frame = 2;
 	    }
 
 	    //  Allow the goblin to jump if they are touching the ground.
