@@ -5,13 +5,13 @@ $( document ).ready(()=>{
 	// built in phaser function which allows us to load in assets we will use  
 
 	// declare global variables
-	var goblin; 
+	var goblin, cursors; 
 	function preload(){
 		
 		//let's bring in a background
 		game.load.image('background', 'background-image/2dbackground.jpg')
 
-		game.load.spritesheet('goblin', 'Spritesheets/Characters/Goblin/Small/goblin_running_spritesheet.png', 116, 113);
+		game.load.spritesheet('goblin', 'Spritesheets/Characters/Goblin/Small/goblin_running_spritesheet.png', 125.5, 113);
 	}
 
 	// built in phaser function which allows us to create items 
@@ -24,14 +24,52 @@ $( document ).ready(()=>{
 		// let's enable physics for the goblin
 		game.physics.arcade.enable(goblin)
 		goblin.body.gravity.y = 400;
-		goblin.body.bounce.y = .2;
+		goblin.body.bounce.y = .5;
 		goblin.body.collideWorldBounds = true;
+
+
+		// let's add some animations so our goblin  looks fly when he is running around 
+
+		goblin.animations.add('right', [0, 1, 2, 3, 4, 5, 6, 7, 8 , 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], 15, true);
+    	// player.animations.add('right', [5, 6, 7, 8], 10, true);
+	 	// let's pull in cursors so that we can actually move the goblin around 
+	 	cursors = game.input.keyboard.createCursorKeys();
+
 
 	}
 
 	// built in phaser function which allows us to update items which in turn will demonstrate changing gameplay
 	function update(){
+		//  Reset the players velocity (movement)
+    goblin.body.velocity.x = 0;
 
+	    if (cursors.left.isDown)
+	    {
+	        //  Move to the left
+	        goblin.body.velocity.x = -150;
+
+	        goblin.animations.play('left');
+	    }
+	    else if (cursors.right.isDown)
+	    {
+	        //  Move to the right
+	        goblin.body.velocity.x = 100;
+
+	        goblin.animations.play('right');
+	    }
+	    else
+	    {
+	        //  Stand still
+	        goblin.animations.stop();
+
+	        goblin.frame = 5;
+	    }
+
+	    //  Allow the goblin to jump if they are touching the ground.
+	    // if (cursors.up.isDown && goblin.body.touching.down && hitPlatform)
+	    // {
+	    //     goblin.body.velocity.y = -450;
+	    // }
 	}
 
 
