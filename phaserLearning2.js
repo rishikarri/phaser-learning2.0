@@ -11,7 +11,8 @@ $( document ).ready(()=>{
 		//let's bring in a background
 		game.load.image('background', 'background-image/2dbackground.jpg')
 
-		game.load.spritesheet('goblin', 'Spritesheets/Characters/Goblin/Small/goblin_spritesheet_running_v2.png', 116, 113, 20);
+		game.load.spritesheet('goblin', 'Spritesheets/Characters/Goblin/Small/goblin_run_chill_attack_spritesheet.png', 116, 123, 60);
+		
 	}
 
 	// built in phaser function which allows us to create items 
@@ -29,10 +30,12 @@ $( document ).ready(()=>{
 
 
 		// let's add some animations so our goblin  looks fly when he is running around 
-		
+
 		// 0 - 19 is right, 20 - 39 is left, 40 - 59 is chill, 60 - 79 is attack
 		goblin.animations.add('right', [0, 1, 2, 3, 4, 5, 6, 7, 8 , 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], 20, true);
-		// goblin.animations.add('chill' [])
+
+		// goblin.animations.add('chill', [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43], 20, true)
+		// goblin.animations.add('attack', [44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59], 10, true)
     	// player.animations.add('right', [5, 6, 7, 8], 10, true);
 	 	// let's pull in cursors so that we can actually move the goblin around 
 	 	cursors = game.input.keyboard.createCursorKeys();
@@ -48,14 +51,14 @@ $( document ).ready(()=>{
 	    if (cursors.left.isDown)
 	    {
 	        //  Move to the left
-	        goblin.body.velocity.x = -150;
+	        goblin.body.velocity.x = 0;
 
-	        goblin.animations.play('left');
+	        goblin.animations.play('chill');
 	    }
 	    else if (cursors.right.isDown)
 	    {
 	        //  Move to the right
-	        goblin.body.velocity.x = 100;
+	        goblin.body.velocity.x = 200;
 
 	        goblin.animations.play('right');
 	    }
@@ -67,12 +70,19 @@ $( document ).ready(()=>{
 
 	        goblin.animations.play('right');
 	    }
+	    else if (cursors.down.isDown)
+	    {
+	        //  Move to the right
+	        goblin.body.velocity.y = 0;
+
+	        goblin.animations.play('attack');
+	    }
 	    else
 	    {
 	        //  Stand still
-	        // goblin.animations.stop();
+	        goblin.animations.stop();
 
-	        // goblin.frame = 2;
+	        goblin.frame = 2;
 
 
 	    }
