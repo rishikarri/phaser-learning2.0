@@ -11,7 +11,7 @@ $( document ).ready(()=>{
 		//let's bring in a background
 		game.load.image('background', 'background-image/2dbackground.jpg')
 
-		game.load.spritesheet('goblin', 'Spritesheets/Characters/Goblin/Small/goblin_running_spritesheet.png', 125.5, 113);
+		game.load.spritesheet('goblin', 'Spritesheets/Characters/Goblin/Small/goblin_spritesheet_running_v2.png', 116, 113, 20);
 	}
 
 	// built in phaser function which allows us to create items 
@@ -29,8 +29,10 @@ $( document ).ready(()=>{
 
 
 		// let's add some animations so our goblin  looks fly when he is running around 
-
-		goblin.animations.add('right', [0, 1, 2, 3, 4, 5, 6, 7, 8 , 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], 15, true);
+		
+		// 0 - 19 is right, 20 - 39 is left, 40 - 59 is chill, 60 - 79 is attack
+		goblin.animations.add('right', [0, 1, 2, 3, 4, 5, 6, 7, 8 , 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], 20, true);
+		// goblin.animations.add('chill' [])
     	// player.animations.add('right', [5, 6, 7, 8], 10, true);
 	 	// let's pull in cursors so that we can actually move the goblin around 
 	 	cursors = game.input.keyboard.createCursorKeys();
@@ -68,9 +70,11 @@ $( document ).ready(()=>{
 	    else
 	    {
 	        //  Stand still
-	        goblin.animations.stop();
+	        // goblin.animations.stop();
 
-	        goblin.frame = 2;
+	        // goblin.frame = 2;
+
+
 	    }
 
 	    //  Allow the goblin to jump if they are touching the ground.
