@@ -58,7 +58,7 @@ $( document ).ready(()=>{
 	    else if (cursors.right.isDown)
 	    {
 	        //  Move to the right
-	        goblin.body.velocity.x = 180;
+	        goblin.body.velocity.x = 190;
 
 	        goblin.animations.play('right');
 	    }
