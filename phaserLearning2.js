@@ -52,7 +52,7 @@ $( document ).ready(()=>{
 	    {
 	        //  Move to the left
 	        goblin.body.velocity.x = 0;
-
+	        //run breathing animation
 	        goblin.animations.play('chill');
 	    }
 	    else if (cursors.right.isDown)
