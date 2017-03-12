@@ -25,7 +25,7 @@ $( document ).ready(()=>{
 		// let's enable physics for the goblin
 		game.physics.arcade.enable(goblin)
 		goblin.body.gravity.y = 400;
-		goblin.body.bounce.y = .5;
+		goblin.body.bounce.y = .6;
 		goblin.body.collideWorldBounds = true;
 
 
